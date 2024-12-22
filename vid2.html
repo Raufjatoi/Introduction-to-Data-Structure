@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rauf: AI and ML</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #003366; 
+      color: white;
+    }
+    .main-heading {
+      color: #87CEEB; 
+    }
+    .navbar {
+      background-color: #002244; 
+    }
+    .navbar-brand {
+      font-weight: bold;
+      color: #87CEEB; 
+    }
+    .navbar-nav .nav-link {
+      color: #87CEEB; 
+    }
+    .content img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+    }
+    footer {
+      background-color: #001a33; 
+      color: white;
+      padding: 15px 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="https://rauf-psi.vercel.app/">Rauf</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="tutorialDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tutorials
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="tutorialDropdown">
+              <li><a class="dropdown-item" href="index.html">Intro to Data Structures</a></li>
+              <li><a class="dropdown-item" href="#">Arrays and Linked List</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- header -->
+  <header class="container text-center my-4">
+    <h1 class="main-heading">Rauf</h1>
+    <h5>AI and ML</h5>
+    <h2 class="main-heading">Introduction to Data Structures</h2>
+  </header>
+
+  <!-- content -->
+  <div class="container content">
+    <section id="tutorial1" class="mb-5">
+      <h2 class="main-heading">Array and Linked List</h2>
+      <img src="tutorial2/array.png" alt="Array" class="img-fluid">
+      <p> Array is the collection of elements ( usually of same type) that continus in memory and is easy to to fasr acess but are of fixed size</p>
+      <p> so basically array is a collection of elements like int , float , or strings but of same type if its int then all should be int and if its float all be float that we can acess fast because they
+        are continous in memeoty means we if one is at like 1X123 memory address then other be at 1X124 like that thats why its easy to acees but its fixed in size which means if you want 100 you have to tell like int arr[100] like that </p>
+      <h2 class="main-heading">Array</h2>
+      <img src="tutorial2/ex.png" alt="example of array" class="img-fluid">
+      <p> Above in the image you can see the image the box have data or elements or number in this case from 1 , 2 , 3 , 4 ,5 and last the null means that is the end also below each box is example address like 1X123 , 1X124 so on to last null so here you can see its continus in memory and of the same type now lets see the code</p>
+
+      <h2 class="main-heading">Code of Array</h2>
+      <img src="tutorial2/arr_code.png" alt="array code" class="img-fluid">
+      <p> in this code example you can see , i added the array the code may feel lille feel weird if your new to c++ , but we can also implement them in python , c and java but yk python is lille slow , c is complicated and java is OPP ( object oriented programming ) language so i chose c++ cause its lile fast then python simpler than c and we 
+        can implement opp using the struct that is also used in c too anyway less see each part of the code at a time
+      </p>
+      <code>#include <iostream>
+        using namespace std; </code>
+        <p> this is like the boiler plate code to add like the input and output and also the string properties </p>
+        <code> int main(){
+            int arr[5] = {1,2,3,4,5}; </code>
+            <p> this the main function and here you can see i added the int as type arr as variable or array name and sqaure beackets to tell its 
+                array and the 5 is the size od that array and the {1,2,3,4,5} are the elements of the array </p>
+            </p>
+            <code> for(int i = 0; i < 5;i++){
+                cout << "location: " << &arr[i] << " value: " << arr[i] << endl;
+            } </code> 
+            <p> so now i loop over all the values of array by indexing over that and i print eachs location and value for location i use & for that to show  the location and for value i just index that so it will print the value and address</p>
+            <code>     cout << "size of array: " << sizeof(arr) << endl;
+                cout << "size of element: " << sizeof(arr[0]) << endl;
+                cout << "length of array: " << sizeof(arr)/sizeof(arr[0]) << endl;
+                cout << "arr[6]: " << arr[6] << endl;
+                cout << "location of arr[6]:" << &arr[6] << endl;
+            }</code>
+            <p> here you finally see some other things i wanna know like the size of array which be like 20 bites cause each element was 4 bike how i know that i used the sizeof fiunction fpor that to find the 
+                size of array and also the size of element and for lenghth i just do the sizeof(array) divided by the sizeof(element) and it give me the length there is no len function in c++ unlike in python so ye this was all the code needed 
+            </p>
+      <h2 class="main-heading">Linked List</h2>
+      <img src="tutorial2/linkedlist.png" alt="linkedlist" class="img-fluid">
+      <p> so linked list is not continus is memoty obviously because it uses the links to connect all the memory address to one anothet as a list so besicallly linked list was crreated cause 
+        we have a probelm with the array like we cannot add the array if we didnt found like the continous memory location to solve that we use the linked list and also the array was of fixed size but the linked list is dynimic it can hrink or spread
+      </p>
+      <h2 class="main-heading">Example of Linked List</h2>
+      <img src="tutorial2/ex2.png" alt="linkedlist" class="img-fluid">
+      <p> so in this example you can see how linked list look like</p>
+
+
+      <h3>Check out the full video tutorial:</h3>
+      <a href="#" target="_blank">
+        <img src="thumbnails/thumbnail2.png" alt="Arrays and linked list" class="img-fluid">
+      </a>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center">
+    <p> 22 Dec 2024 - Rauf AI and ML</p>
+  </footer>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
