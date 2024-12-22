@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rauf: AI and ML</title>
+  <link rel="icon" href="img/me.jpeg" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
@@ -99,7 +100,6 @@ int main() {
     cout &lt;&lt; "arr[6]: " &lt;&lt; arr[6] &lt;&lt; endl;
     cout &lt;&lt; "Location of arr[6]: " &lt;&lt; &arr[6] &lt;&lt; endl;
 
-    return 0;
 }</code></pre>
       
       <p> This code creates an integer array of size 5 and prints the memory locations and values of each element. The <code>sizeof()</code> function is used to determine the size of the array, the size of an element, and the length of the array. Note that arrays in C++ don't have a built-in <code>length()</code> function, unlike Python.</p>
@@ -119,7 +119,6 @@ int main() {
       <pre><code>struct Node {
     int data;
     Node* next;
-    Node* prev;
 };
 
 int main() {
@@ -139,17 +138,15 @@ int main() {
         cout &lt;&lt; "Location: " &lt;&lt; t &lt;&lt; " Value: " &lt;&lt; t-&gt;data &lt;&lt; " Next: " &lt;&lt; t-&gt;next &lt;&lt; endl;
         t = t-&gt;next;
     }
-
-    return 0;
 }</code></pre>
 
-      <p> In this code, a simple doubly linked list is created. Each node points to both the next and previous nodes. The <code>head</code> node points to the second node, which in turn points to the third node. The list terminates with a <code>NULL</code> pointer.</p>
+<p>In this code, a simple linked list is created. Each node points to the next node and contains data as an integer. The <code>head</code> node points to the second node, which in turn points to the third node. The list terminates with a <code>NULL</code> pointer.</p>
 
-      <h2 class="main-heading">Doubly Linked List</h2>
-      <img src="thumbnail2/doublylinkedlist.png" alt="Doubly linked list" class="img-fluid">
-      <p> In a doubly linked list, each node contains two pointers: one pointing to the next node and one pointing to the previous node. This allows for traversal in both directions. The image above illustrates a doubly linked list.</p>
-      
-      <p> This concludes the tutorial. See you in the next one!</p>
+<h2 class="main-heading">Doubly Linked List</h2>
+<img src="tutorial2/doublylinkedlist.png" alt="Doubly linked list" class="img-fluid">
+<p>In a doubly linked list, we simply add another pointer in each node that points to the previous node. We then adjust the functions accordingly, and while assigning the next node, we also assign the previous node. It's a straightforward modification.</p>
+
+<p>This concludes the tutorial. See you in the next one 😊</p>
       <h3>Check out the full video tutorial:</h3>
       <a href="https://youtu.be/qf58SWYPF5A?si=yU7OdKBHZ4ApQuyx" target="_blank">
         <img src="thumbnails/thumbnail2.png" alt="Arrays and linked list" class="img-fluid">
