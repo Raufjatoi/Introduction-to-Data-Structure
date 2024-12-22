@@ -52,7 +52,7 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="tutorialDropdown">
               <li><a class="dropdown-item" href="index.html">Intro to Data Structures</a></li>
-              <li><a class="dropdown-item" href="#">Arrays and Linked List</a></li>
+              <li><a class="dropdown-item" href="#">Arrays and Linked Lists</a></li>
             </ul>
           </li>
         </ul>
@@ -70,53 +70,88 @@
   <!-- content -->
   <div class="container content">
     <section id="tutorial1" class="mb-5">
-      <h2 class="main-heading">Array and Linked List</h2>
+      <h2 class="main-heading">Arrays and Linked Lists</h2>
       <img src="tutorial2/array.png" alt="Array" class="img-fluid">
-      <p> Array is the collection of elements ( usually of same type) that continus in memory and is easy to to fasr acess but are of fixed size</p>
-      <p> so basically array is a collection of elements like int , float , or strings but of same type if its int then all should be int and if its float all be float that we can acess fast because they
-        are continous in memeoty means we if one is at like 1X123 memory address then other be at 1X124 like that thats why its easy to acees but its fixed in size which means if you want 100 you have to tell like int arr[100] like that </p>
-      <h2 class="main-heading">Array</h2>
-      <img src="tutorial2/ex.png" alt="example of array" class="img-fluid">
-      <p> Above in the image you can see the image the box have data or elements or number in this case from 1 , 2 , 3 , 4 ,5 and last the null means that is the end also below each box is example address like 1X123 , 1X124 so on to last null so here you can see its continus in memory and of the same type now lets see the code</p>
+      <p> An array is a collection of elements (usually of the same type) that are stored contiguously in memory. Arrays provide fast access but have a fixed size. For example, if you declare an array of integers like <code>int arr[100];</code>, the size is fixed to 100 elements.</p>
+      <p> In an array, elements such as integers, floats, or strings are stored in contiguous memory locations. For instance, if the first element is stored at memory address <code>1X123</code>, the next element will be at <code>1X124</code>, and so on. This allows fast access, but the size is fixed once declared.</p>
 
-      <h2 class="main-heading">Code of Array</h2>
-      <img src="tutorial2/arr_code.png" alt="array code" class="img-fluid">
-      <p> in this code example you can see , i added the array the code may feel lille feel weird if your new to c++ , but we can also implement them in python , c and java but yk python is lille slow , c is complicated and java is OPP ( object oriented programming ) language so i chose c++ cause its lile fast then python simpler than c and we 
-        can implement opp using the struct that is also used in c too anyway less see each part of the code at a time
-      </p>
-      <code>#include <iostream>
-        using namespace std; </code>
-        <p> this is like the boiler plate code to add like the input and output and also the string properties </p>
-        <code> int main(){
-            int arr[5] = {1,2,3,4,5}; </code>
-            <p> this the main function and here you can see i added the int as type arr as variable or array name and sqaure beackets to tell its 
-                array and the 5 is the size od that array and the {1,2,3,4,5} are the elements of the array </p>
-            </p>
-            <code> for(int i = 0; i < 5;i++){
-                cout << "location: " << &arr[i] << " value: " << arr[i] << endl;
-            } </code> 
-            <p> so now i loop over all the values of array by indexing over that and i print eachs location and value for location i use & for that to show  the location and for value i just index that so it will print the value and address</p>
-            <code>     cout << "size of array: " << sizeof(arr) << endl;
-                cout << "size of element: " << sizeof(arr[0]) << endl;
-                cout << "length of array: " << sizeof(arr)/sizeof(arr[0]) << endl;
-                cout << "arr[6]: " << arr[6] << endl;
-                cout << "location of arr[6]:" << &arr[6] << endl;
-            }</code>
-            <p> here you finally see some other things i wanna know like the size of array which be like 20 bites cause each element was 4 bike how i know that i used the sizeof fiunction fpor that to find the 
-                size of array and also the size of element and for lenghth i just do the sizeof(array) divided by the sizeof(element) and it give me the length there is no len function in c++ unlike in python so ye this was all the code needed 
-            </p>
+      <h2 class="main-heading">Array Example</h2>
+      <img src="tutorial2/ex.png" alt="Array example" class="img-fluid">
+      <p> In the above image, you can see how an array looks in memory. Each box represents an element, and the values (1, 2, 3, 4, 5) are stored in contiguous memory locations. The last box contains a <code>null</code> to signify the end of the array. Below each box, you can see memory addresses like <code>1X123</code>, <code>1X124</code>, etc.</p>
+
+      <h2 class="main-heading">Array Code</h2>
+      <img src="tutorial2/arr_code.png" alt="Array code" class="img-fluid">
+      <p> Here’s an example of an array in C++:</p>
+      
+      <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[5] = {1, 2, 3, 4, 5};
+
+    for(int i = 0; i < 5; i++) {
+        cout &lt;&lt; "Location: " &lt;&lt; &arr[i] &lt;&lt; " Value: " &lt;&lt; arr[i] &lt;&lt; endl;
+    }
+
+    cout &lt;&lt; "Size of array: " &lt;&lt; sizeof(arr) &lt;&lt; endl;
+    cout &lt;&lt; "Size of element: " &lt;&lt; sizeof(arr[0]) &lt;&lt; endl;
+    cout &lt;&lt; "Length of array: " &lt;&lt; sizeof(arr) / sizeof(arr[0]) &lt;&lt; endl;
+    cout &lt;&lt; "arr[6]: " &lt;&lt; arr[6] &lt;&lt; endl;
+    cout &lt;&lt; "Location of arr[6]: " &lt;&lt; &arr[6] &lt;&lt; endl;
+
+    return 0;
+}</code></pre>
+      
+      <p> This code creates an integer array of size 5 and prints the memory locations and values of each element. The <code>sizeof()</code> function is used to determine the size of the array, the size of an element, and the length of the array. Note that arrays in C++ don't have a built-in <code>length()</code> function, unlike Python.</p>
+
       <h2 class="main-heading">Linked List</h2>
-      <img src="tutorial2/linkedlist.png" alt="linkedlist" class="img-fluid">
-      <p> so linked list is not continus is memoty obviously because it uses the links to connect all the memory address to one anothet as a list so besicallly linked list was crreated cause 
-        we have a probelm with the array like we cannot add the array if we didnt found like the continous memory location to solve that we use the linked list and also the array was of fixed size but the linked list is dynimic it can hrink or spread
-      </p>
-      <h2 class="main-heading">Example of Linked List</h2>
-      <img src="tutorial2/ex2.png" alt="linkedlist" class="img-fluid">
-      <p> so in this example you can see how linked list look like</p>
+      <img src="tutorial2/linkedlist.png" alt="Linked list" class="img-fluid">
+      <p> A linked list is different from an array in that it does not use contiguous memory. Instead, each element (or "node") contains a value and a reference (or pointer) to the next node in the list. Linked lists solve the problem of arrays, where memory must be contiguous. They are dynamic in size and can grow or shrink as needed.</p>
 
+      <h2 class="main-heading">Linked List Example</h2>
+      <img src="tutorial2/ex2.png" alt="Linked list example" class="img-fluid">
+      <p> In this example, you can see how a linked list works. Each node contains data and a pointer to the next node. The last node points to <code>null</code> to indicate the end of the list.</p>
 
+      <h2 class="main-heading">Linked List Code</h2>
+      <img src="tutorial2/linked_code.png" alt="Linked list code" class="img-fluid">
+      <p> Here’s the code for a simple linked list implementation in C++:</p>
+
+      <pre><code>struct Node {
+    int data;
+    Node* next;
+    Node* prev;
+};
+
+int main() {
+    Node* head = new Node();
+    Node* second = new Node();
+    Node* third = new Node();
+
+    head-&gt;data = 1;
+    head-&gt;next = second;
+    second-&gt;data = 2;
+    second-&gt;next = third;
+    third-&gt;data = 3;
+    third-&gt;next = NULL;
+
+    Node* t = head;
+    while (t != NULL) {
+        cout &lt;&lt; "Location: " &lt;&lt; t &lt;&lt; " Value: " &lt;&lt; t-&gt;data &lt;&lt; " Next: " &lt;&lt; t-&gt;next &lt;&lt; endl;
+        t = t-&gt;next;
+    }
+
+    return 0;
+}</code></pre>
+
+      <p> In this code, a simple doubly linked list is created. Each node points to both the next and previous nodes. The <code>head</code> node points to the second node, which in turn points to the third node. The list terminates with a <code>NULL</code> pointer.</p>
+
+      <h2 class="main-heading">Doubly Linked List</h2>
+      <img src="thumbnail2/doublylinkedlist.png" alt="Doubly linked list" class="img-fluid">
+      <p> In a doubly linked list, each node contains two pointers: one pointing to the next node and one pointing to the previous node. This allows for traversal in both directions. The image above illustrates a doubly linked list.</p>
+      
+      <p> This concludes the tutorial. See you in the next one!</p>
       <h3>Check out the full video tutorial:</h3>
-      <a href="#" target="_blank">
+      <a href="https://youtu.be/qf58SWYPF5A?si=yU7OdKBHZ4ApQuyx" target="_blank">
         <img src="thumbnails/thumbnail2.png" alt="Arrays and linked list" class="img-fluid">
       </a>
     </section>
