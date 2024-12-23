@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rauf: AI and ML</title>
+  <link rel="icon" href="img/me.jpeg" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    #comment {
+      color: #6c757d;
+    }
+    body {
+      background-color: #003366; 
+      color: white;
+    }
+    .main-heading {
+      color: #87CEEB; 
+    }
+    .navbar {
+      background-color: #002244; 
+    }
+    .navbar-brand {
+      font-weight: bold;
+      color: #87CEEB; 
+    }
+    .navbar-nav .nav-link {
+      color: #87CEEB; 
+    }
+    .content img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+    }
+    footer {
+      background-color: #001a33; 
+      color: white;
+      padding: 15px 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="https://rauf-psi.vercel.app/">Rauf</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="tutorialDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tutorials
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="tutorialDropdown">
+              <li><a class="dropdown-item" href="index.html">Intro to Data Structures</a></li>
+              <li><a class="dropdown-item" href="vid2.html">Arrays and Linked List</a></li>
+              <li><a class="dropdown-item" href="#">Stack and Queue</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- header -->
+  <header class="container text-center my-4">
+    <h1 class="main-heading">Rauf</h1>
+    <h5>AI and ML</h5>
+    <h2 class="main-heading">Introduction to Data Structures</h2>
+  </header>
+
+  <!-- content -->
+  <div class="container content">
+    <section id="tutorial1" class="mb-5">
+      <h2 class="main-heading">Stack and Queue</h2>
+      <img src="tutorial3/stack.png" alt="stack" class="img-fluid">
+      <p>Stack is a Last-In-First-Out data structure, which means the last element added to the list will be the first one to be removed.</p>
+      <p>It is used in many real-world applications. For example, when you view emails on your mobile, the most recent one is at the top, and the oldest one is at the bottom. This is an application of a stack in the real world.</p>
+
+      <h2 class="main-heading">Example of Stack</h2>
+      <img src="tutorial3/ex.png" alt="example of stack" class="img-fluid">
+      <p>In the image above, you can see a stack. For example, stack 1, 2, and 3 are placed on top of each other. Initially, we push 1, which is at the top. Then, we add 2, and it becomes the top while 1 goes below it. Finally, we push 3, making it the new top. To remove or pop the top element, 3 is removed, leaving 2 as the new top, and so on.</p>
+
+      <h2 class="main-heading">Code of Stack</h2>
+      <img src="tutorial3/code_stack.png" alt="stack code" class="img-fluid">
+      <p>In the image above, I have shown the main function where push, pop, and print functions are already defined in the structure. Here, we perform the same operations as explained in the stack example. First, we push 1, then 2, and then 3. Printing the stack shows: 3 -> 2 -> 1 -> null. The "->" is added to make it simple and understandable. After removing or popping the top element, the stack now looks like: 2 -> 1 -> null. This demonstrates how the stack works.</p>
+      <p>Now let us see the underlying code step by step. Don’t worry, I will explain each part.</p>
+
+      <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+
+    <p id="comment">// constructor</p>
+    Node(int v): data(v), next(nullptr) {}
+};
+      </code></pre>
+
+      <p>In this part, I added the boilerplate code. The main part starts with <code>struct Node</code>, where I defined an integer data and a pointer to the next node. After that, the <code>Node(int v): data(v), next(nullptr) {}</code> is a constructor to initialize the values, so we don’t have to do it manually every time.</p>
+
+      <pre><code>
+struct Stack {
+    Node* head;
+
+    Stack(): head(nullptr) {}
+};
+      </code></pre>
+
+      <p>In this part, I created another struct, <code>Stack</code>, which includes a pointer <code>head</code>. Initially, the head is <code>nullptr</code>. That’s why I added the constructor <code>Stack(): head(nullptr) {}</code>.</p>
+
+      <pre><code>
+        <p id="comment">// push will add a new node to the top of the stack</p>
+void push(int v) {
+    Node* n = new Node(v);
+    n->next = head;
+    head = n;
+}
+      </code></pre>
+
+      <p>The push method adds a node to the top of the stack. First, it creates a new node and assigns it to a pointer <code>n</code>. If there is any element in the stack, the new node points to it, and <code>head</code> is updated to <code>n</code>.</p>
+
+      <pre><code>
+        <p id="comment">// pop will remove the top node from the stack</p>
+void pop() {
+    if (head == nullptr) {
+        cout << "stack is empty" << endl;
+    } else {
+        Node* t = head;
+        head = head->next;
+        delete t;
+    }
+}
+      </code></pre>
+
+      <p>The pop method removes the top element from the stack. It first checks if the stack is empty. If not, it uses a temporary node <code>t</code> to manipulate the <code>head</code>. The head is updated to point to the next element, and <code>t</code> is deleted.</p>
+
+      <pre><code>
+void print() {
+    Node* t = head;
+    while (t != nullptr) {
+        cout << t->data << " -> ";
+        t = t->next;
+    }
+    cout << "null" << endl;
+}
+};
+      </code></pre>
+      <p>The print function displays all elements in the stack. First, a temporary node <code>t</code> is created. Using a <code>while</code> loop, the function prints the data and updates <code>t</code> to point to the next node until <code>null</code> is reached. Finally, "null" is printed to indicate the end of the stack.</p>
+
+      <h2 class="main-heading">Queue</h2>
+      <img src="tutorial3/queue.png" alt="Queue" class="img-fluid">
+      <p>Queue is a First In, First Out (FIFO) data structure, which means the first element added will be the first one to be removed.</p>
+      <p>In real-world applications, it can be like a booking system where the first person to book is the first to be served.</p>
+      
+      <h2 class="main-heading">Queue Example</h2>
+      <img src="tutorial3/ex2.png" alt="Queue example" class="img-fluid">
+      <p>In the image above, you can see a queue example. I added 1, 2, 3 using the enqueue function, which adds elements from the front to the back. When the dequeue function is called, it removes the first element, so the queue becomes 2 and 3.</p>
+      
+      <h2 class="main-heading">Queue Code</h2>
+      <img src="tutorial3/code2.png" alt="Queue code" class="img-fluid">
+      <p>This is the main function where the enqueue (add) and dequeue (remove) functions are used. For example, <code>enqueue(1)</code>, <code>enqueue(2)</code>, and so on. The dequeue function removes the first element added, and the remaining queue is printed. You can see the values as <code>3 -> 2 -> 1 -> null</code>, and when <code>dequeue()</code> is called, 1 is removed, as it was the first to be added.</p>
+      <p>Let’s see the code step by step:</p>
+      <pre><code>
+      struct Node {
+          int data;
+          Node* next;
+      
+          Node(int v) : data(v), next(nullptr) {}
+      };
+      </code></pre>
+      <p>This is the struct, same as it was in the stack, so nothing has changed here.</p>
+      <pre><code>
+      struct Queue {
+          Node* head;
+      
+          Queue() : head(nullptr) {}
+      </code></pre>
+      <p>Here, I added a struct named <code>Queue</code> with a head initialized to <code>nullptr</code> using the constructor.</p>
+      <pre>
+      <code>
+        <p id="comment">// enqueue will add a new node to the end of the queue </p>
+      void enqueue(int v) {
+          Node* n = new Node(v);
+          if (head == nullptr) {
+              head = n;
+          } else {
+              Node* t = head;
+              while (t->next != nullptr) {
+                  t = t->next;
+              }
+              t->next = n;
+          }
+      }
+      </code>
+      </pre>
+      <p>The <code>enqueue</code> function adds a new node to the end of the queue. It first checks if the queue is empty; if it is, the head is set to the new node. Otherwise, a temporary node <code>t</code> is used to iterate to the last node, and the new node <code>n</code> is added at the end.</p>
+      <pre>
+      <code>
+      <p id="comment">// dequeue will remove the first node from the queue </p>
+      void dequeue() {
+          if (head == nullptr) {
+              cout << "Queue is empty" << endl;
+          } else {
+              Node* t = head;
+              head = head->next;
+              delete t;
+          }
+      }
+      </code>
+      </pre>
+      <p>The <code>dequeue</code> function removes the first node from the queue, similar to the <code>pop</code> operation in a stack. It’s straightforward if you understand each step.</p>
+      <pre>
+      <code>
+      void print() {
+          Node* t = head;
+          while (t != nullptr) {
+              cout << t->data << " -> ";
+              t = t->next;
+          }
+          cout << "null" << endl;
+      }
+      };
+      </code>
+      </pre>
+      <p>Finally, the <code>print</code> function simply prints all the values in the queue. It’s similar to the print function in the stack example, so there’s nothing new to explain here.</p>
+      <p>This concludes today’s tutorial. See you in the next one 😊</p>
+      <h3>Check out the full video tutorial:</h3>
+      <a href="#" target="_blank">
+        <img src="thumbnails/thumbnail3.png" alt="Stacks and Queues" class="img-fluid">
+      </a>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center">
+    <p> 23 Dec 2024 - Rauf AI and ML</p>
+  </footer>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
