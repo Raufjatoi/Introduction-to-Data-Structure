@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rauf: AI and ML</title>
+  <link rel="icon" href="img/me.jpeg" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    #comment {
+      color: #6c757d;
+    }
+    body {
+      background-color: #003366; 
+      color: white;
+    }
+    .main-heading {
+      color: #87CEEB; 
+    }
+    .navbar {
+      background-color: #002244; 
+    }
+    .navbar-brand {
+      font-weight: bold;
+      color: #87CEEB; 
+    }
+    .navbar-nav .nav-link {
+      color: #87CEEB; 
+    }
+    .content img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+    }
+    footer {
+      background-color: #001a33; 
+      color: white;
+      padding: 15px 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="https://rauf-psi.vercel.app/">Rauf</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="tutorialDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tutorials
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="tutorialDropdown">
+              <li><a class="dropdown-item" href="index.html">Intro to Data Structures</a></li>
+              <li><a class="dropdown-item" href="vid2.html">Arrays and Linked List</a></li>
+              <li><a class="dropdown-item" href="vid3.html">Stack and Queue</a></li>
+              <li><a class="dropdown-item" href="#">Tree and Binary Tree</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- header -->
+  <header class="container text-center my-4">
+    <h1 class="main-heading">Rauf</h1>
+    <h5>AI and ML</h5>
+    <h2 class="main-heading">Introduction to Data Structures</h2>
+  </header>
+
+  <!-- content -->
+  <div class="container content">
+    <section id="tutorial1" class="mb-5">
+      <h2 class="main-heading">Tree and Binary Tree</h2>
+      <img src="tutorial4/tree.png" alt="Tree" class="img-fluid">
+      <p>A tree is a hierarchical data structure with branches, leaves, and nodes that are interconnected, resembling an inverted tree. 
+        It is called a "tree," but unlike a real tree, it is represented upside-down.</p>
+
+      <h2 class="main-heading">Example of Tree</h2>
+      <img src="tutorial4/ex.png" alt="Example of Tree" class="img-fluid">
+      <p>In this image, you can see an upside-down tree structure with a root, branches, and leaves. These are all interconnected. 
+        The tree structure can become quite complex, so i first explore binary trees, which are simpler, before you try implementing trees yourself.</p>
+
+      <h2 class="main-heading">Binary Tree</h2>
+      <img src="tutorial4/binary.png" alt="Binary Tree" class="img-fluid">
+      <p>A binary tree is a simplified version of a tree. It has one root and a maximum of two child nodes: a left node and a right node. 
+        The left node stores values smaller than the root, and the right node stores values greater than the root. For example, if the root is 2, 
+        the left node might store 1, and the right node might store 3.</p>
+
+      <h2 class="main-heading">Example of Binary Tree</h2>
+      <img src="tutorial4/ex2.png" alt="Binary Tree Example" class="img-fluid">
+      <p>In the image above, you can see an example of a binary tree. The root is 2, with the left node storing 1 (smaller value) and the right node 
+        storing 3 (larger value). The left and right nodes can also become roots for their child nodes, continuing the hierarchy. This recursive 
+        structure makes binary trees very versatile.</p>
+
+      <h2 class="main-heading">Binary Tree Code</h2>
+      <img src="tutorial4/code.png" alt="Binary Tree Code" class="img-fluid">
+      <p>The code snippet demonstrates how to add values to a binary tree and print them. Initially, a tree object is created, and values such as 2, 1, and 3 
+        are added. This example aligns with the binary tree shown earlier. If you were to add values in the order 1, 2, 3, the tree would grow linearly 
+        to the right, which isn't ideal for a binary tree. Let's break down the implementation step by step.</p>
+
+      <pre><code>
+        #include &lt;iostream&gt;
+        using namespace std;
+
+        struct Node {
+            int data;
+            Node* left;
+            Node* right;
+            
+            <p id="comment">// Constructor </p>
+            Node(int v) : data(v), left(nullptr), right(nullptr) {}
+        };
+      </code></pre>
+      <p>At the top, i include the necessary headers and use the `std` namespace. The `Node` structure represents a single node in the tree, containing data, 
+        and pointers to its left and right child nodes. The constructor initializes the node with a value and sets both child pointers to `nullptr`.</p>
+
+      <pre><code>
+        struct Tree {
+            Node* root;
+        
+            Tree() : root(nullptr) {}
+      </code></pre>
+      <p>The `Tree` structure contains the root of the binary tree, which is initialized to `nullptr` in the constructor.</p>
+
+      <pre><code>
+        <p id="comment">// Add function </p>  
+        void add(int v) {
+            Node* n = new Node(v);
+            if (root == nullptr) {
+                root = n;
+            } else {
+                Node* t = root;
+                while (true) {
+                    <p id="comment">// If value is less than the current node's data </p>
+                    if (v < t->data) {
+                        <p id="comment">// If the left child is empty, add the node there </p>
+                        if (t->left == nullptr) {
+                            t->left = n;
+                            break;
+                        } else {
+                            <p id="comment">// Otherwise, move to the left child </p>
+                            t = t->left;
+                        }
+                    }
+      </code></pre>
+      <p>The `add` function inserts a value into the binary tree. If the tree is empty, the new node becomes the root. Otherwise, 
+        the function compares the value to the current node's data and decides whether to traverse to the left or right subtree. 
+        For values less than the current node, it checks if the left child is empty and adds the node there, or continues traversing left.</p>
+
+      <pre><code>
+                    <p id="comment">// If value is greater than the current node's data </p>
+                    if (v > t->data) {
+                        <p id="comment">// If the right child is empty, add the node there </p>
+                        if (t->right == nullptr) {
+                            t->right = n;
+                            break;
+                        } else {
+                            <p id="comment">// Otherwise, move to the right child </p>
+                            t = t->right;
+                        }
+                    }
+                }
+            }
+        }
+    };
+      </code></pre>
+      <p>For values greater than the current node, the function checks the right child and follows the same logic as the left child. 
+        This ensures the binary tree remains sorted, with smaller values on the left and larger values on the right.</p>
+
+      <p>This concludes today’s tutorial. See you in the next one 😊</p>
+      <h3>Check out the full video tutorial:</h3>
+      <a href="#" target="_blank">
+        <img src="thumbnails/thumbnail4.png" alt="Stacks and Queues" class="img-fluid">
+      </a>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center">
+    <p> 24 Dec 2024 - Rauf AI and ML</p>
+  </footer>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
