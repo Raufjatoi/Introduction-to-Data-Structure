@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rauf: AI and ML</title>
+  <link rel="icon" href="img/me.jpeg" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    #comment {
+      color: #6c757d;
+    }
+    body {
+      background-color: #003366; 
+      color: white;
+    }
+    .main-heading {
+      color: #87CEEB; 
+    }
+    .navbar {
+      background-color: #002244; 
+    }
+    .navbar-brand {
+      font-weight: bold;
+      color: #87CEEB; 
+    }
+    .navbar-nav .nav-link {
+      color: #87CEEB; 
+    }
+    .content img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+    }
+    footer {
+      background-color: #001a33; 
+      color: white;
+      padding: 15px 0;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="https://rauf-psi.vercel.app/">Rauf</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="tutorialDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tutorials
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="tutorialDropdown">
+              <li><a class="dropdown-item" href="index.html">Intro to Data Structures</a></li>
+              <li><a class="dropdown-item" href="vid2.html">Arrays and Linked List</a></li>
+              <li><a class="dropdown-item" href="vid3.html">Stack and Queue</a></li>
+              <li><a class="dropdown-item" href="vid4.html">Tree and Binary Tree</a></li>
+              <li><a class="dropdown-item" href="#">Graph</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="container text-center my-4">
+    <h1 class="main-heading">Rauf</h1>
+    <h5>AI and ML</h5>
+    <h2 class="main-heading">Introduction to Data Structures</h2>
+  </header>
+  <div class="container content">
+    <section id="tutorial1" class="mb-5">
+        <h2 class="main-heading">Graph</h2>
+        <img src="tutorial5/graph.png" alt="Graph" class="img-fluid">
+        <p>A graph is a data structure that consists of nodes connected to each other through edges. Nodes are also called vertices. Graphs are used to represent networks. These networks may include paths in a city or a telephone network, among others.</p>
+
+        <h2 class="main-heading">Example of Graph</h2>
+        <img src="tutorial5/ex.png" alt="Example of Graph" class="img-fluid">
+        <p>In the image above, you can see an example of a graph. There are 4 nodes (1, 2, 3, 4) that are connected to each other. The vertices and edges are shown. I tried to make it simple so you can understand it easily.</p>
+
+        <h2 class="main-heading">My Graph</h2>
+        <img src="tutorial5/my.png" alt="My graph" class="img-fluid">
+        <p>When I tried to implement the same example in code, my graph had so many bugs. But I kept trying, and I got something like this (shown in the image above). It’s still connected, right? The code was messy, so I tried to make it as short and simple as possible so you can understand.</p>
+
+        <h2 class="main-heading">Graph Code</h2>
+        <img src="tutorial5/code.png" alt="Code" class="img-fluid">
+        <p>In this code, you can see the main function snippets. I’m adding the adjacency list and then adding it to the edges, which have source and destination nodes. I know it might be a bit confusing, so let’s see each step one by one, starting from the beginning.</p>
+
+        <pre><code>
+        #include &lt;iostream&gt;
+        using namespace std;
+
+        struct Node {
+            int data;
+            Node* next;
+            
+            <p id="comment"> // Constructor </p>
+            Node(int v) : data(v), next(nullptr) {}
+        };
+        </code></pre>
+        <p>This is a common piece of code we’ve seen before when implementing arrays, linked lists, stacks, and queues. At the top, it includes boilerplate code like input/output headers. In the Node structure, I added an integer value and a pointer to the next node, along with a constructor to initialize the value and set the next pointer to null.</p>
+
+        <pre><code>
+        struct Edge {
+            <p id="comment"> // source and destination </p>
+            int src, dest;
+        
+            Edge(int s, int d) : src(s), dest(d) {};
+        };
+        </code></pre>
+        <p>This is the structure for the edge, which holds the source and destination values as integers. In the constructor, I initialized src and dest to s and d, respectively.</p>
+
+        <pre><code>
+        <p id="comment"> // add </p>
+        void addEdge(Node* adj[], Edge e) {
+            Node* n = new Node(e.dest);
+            n->next = adj[e.src - 1];
+            adj[e.src - 1] = n;
+        }
+        </code></pre>
+        <p>This is the add function. Here, I only added the function for adding edges; you can add remove and print functions yourself. Try it 🙂, In this function, I add an edge to the graph. It takes an array of nodes and an edge as input (adj and e). I create a new node with the destination value of the edge, set the next pointer of the new node to the current head of the source node, and finally update the head of the source node to the new node. For example, <code>n->next = adj[e.src - 1]</code> will adjust the index and add the new node to the adjacency list.</p>
+
+        <pre><code>
+        int main() {
+            int V = 4;
+            Node* adj[V];  
+        
+            for (int i = 0; i < V; i++) {
+                adj[i] = nullptr;
+            }
+        </code></pre>
+        <p>In the main function, I set V to 4 to create 4 nodes (1, 2, 3, 4). Then, I initialized an adjacency list of nodes and set all adj[i] to null, making it empty at the start.</p>
+
+        <pre><code>
+        Edge e1(1, 2);
+        e1.addEdge(adj, e1);
+        Edge e2(1, 3);
+        e2.addEdge(adj, e2);
+        Edge e3(1, 4);
+        e3.addEdge(adj, e3);
+        Edge e4(2, 3);
+        e4.addEdge(adj, e4);
+        Edge e5(2, 4);
+        e5.addEdge(adj, e5);
+        Edge e6(3, 4);
+        e6.addEdge(adj, e6);
+        </code></pre>
+        <p>In this code, I created edges and added them to the adjacency list, connecting the nodes to each other.</p>
+
+        <pre><code>
+        for (int i = 0; i < V; i++) {
+            Node* n = adj[i];
+            <p id="comment"> // Adjusting index to start from 1 instead of 0 </p>
+            cout << i + 1 << " -> ";  
+            while (n) {
+                cout << n->data << " ";
+                n = n->next;
+            }
+            cout << endl;
+        }
+        }
+        </code></pre>
+        <p>Finally, I printed the graph to show the connections between nodes and edges. It’s not perfect, but you can modify it to make it better. The key is to keep it simple and easy to understand. This was my attempt.</p>
+      <br>
+      <p>This concludes today’s tutorial. See you in the next one 😊</p>
+      <h3>Check out the full video tutorial:</h3>
+      <a href="#" target="_blank">
+        <img src="thumbnails/thumbnail5.png" alt="Graph" class="img-fluid">
+      </a>
+    </section>
+  </div>
+
+  <footer class="text-center">
+    <p> 25 Dec 2024 - Rauf AI and ML</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
