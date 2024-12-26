@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rauf: AI and ML</title>
+  <link rel="icon" href="img/me.jpeg" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    #comment {
+      color: #6c757d;
+    }
+    body {
+      background-color: #003366; 
+      color: white;
+    }
+    .main-heading {
+      color: #87CEEB; 
+    }
+    .navbar {
+      background-color: #002244; 
+    }
+    .navbar-brand {
+      font-weight: bold;
+      color: #87CEEB; 
+    }
+    .navbar-nav .nav-link {
+      color: #87CEEB; 
+      transition: color 0.3s ease;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #ffffff; 
+    }
+    .content img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+    footer {
+      background-color: #001a33; 
+      color: white;
+      padding: 15px 0;
+      border-top: 3px solid #87CEEB;
+    }
+    section {
+      padding: 20px;
+      border: 1px solid #87CEEB;
+      border-radius: 8px;
+      background-color: #002244;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="https://rauf-psi.vercel.app/">Rauf</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="tutorialDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tutorials
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="tutorialDropdown">
+              <li><a class="dropdown-item" href="index.html">Intro to Data Structures</a></li>
+              <li><a class="dropdown-item" href="vid2.html">Arrays and Linked List</a></li>
+              <li><a class="dropdown-item" href="vid3.html">Stack and Queue</a></li>
+              <li><a class="dropdown-item" href="vid4.html">Tree and Binary Tree</a></li>
+              <li><a class="dropdown-item" href="vid5.html">Graph</a></li>
+              <li><a class="dropdown-item" href="#">Hashing and Hash table</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="container text-center my-4">
+    <h1 class="main-heading">Rauf</h1>
+    <h5>AI and ML</h5>
+    <h2 class="main-heading">Introduction to Data Structures</h2>
+  </header>
+
+  <div class="container content">
+    <section id="tutorial1" class="mb-5">
+        <h2 class="main-heading">Hashing and Hash Table</h2>
+        <img src="tutorial6/hash.png" alt="Hashing" class="img-fluid">
+        <p>Hashing involves converting a fixed-size key to its corresponding value using a hash function, which maps the values based on the key.</p>
+
+        <h2 class="main-heading">Example of a Hash Table</h2>
+        <img src="tutorial6/ex.png" alt="Example of hash table" class="img-fluid">
+        <p>In the image, you can see a hash table, which consists of keys and corresponding values. A `null` value indicates an empty slot or the end of a chain in the table. For example, if the last digit of a number is 0, it is hashed to key 0. If the last digit is 2, it maps to key 2, and so on.</p>
+        <p>Hash tables are used when you need fast data access. Each data structure has its specific advantages: arrays are fast for searching, linked lists are flexible, and trees allow hierarchical searching. Hash tables provide efficient indexing. For example, in a phonebook, names can be used as keys, and phone numbers as values, similar to a Python dictionary.</p>
+
+        <h2 class="main-heading">Code of a Hash Table</h2>
+        <img src="tutorial6/code.png" alt="Code of Hash Table" class="img-fluid">
+        <p>Below is an example code implementing a hash table. It demonstrates adding values, printing the table, and handling keys. The trade-off with hash tables is often between speed and memory usage. Let's go step-by-step:</p>
+
+        <h3 class="main-heading">Step-by-Step Code</h3>
+        <pre><code>
+        <p id="comment">// Hash is a data structure that maps keys to values for efficient data retrieval using hash functions.</p>
+        #include &lt;iostream&gt;
+        using namespace std;
+
+        struct Node {
+            int key;
+            int value;
+            Node* next;
+
+            <p id="comment">// Constructor</p>
+            Node(int k, int v) : key(k), value(v), next(nullptr) {}
+        };
+        </code></pre>
+        <p>The above code defines a `Node` structure containing an integer key and value, along with a pointer to the next node. This forms the basis of a linked list used for collision handling.</p>
+
+        <pre><code>
+        struct Hash {
+            static const int S = 10;
+            Node* table[S];
+
+            Hash() {
+                for (int i = 0; i < S; i++) {
+                    table[i] = nullptr;
+                }
+            }
+        };
+        </code></pre>
+        <p>Here, the `Hash` structure defines the size of the hash table (`S = 10`) and initializes all slots to `nullptr` in the constructor. This sets up the hash table structure.</p>
+
+        <pre><code>
+        <p id="comment">// Hash function</p>
+        int hashFunction(int key) {
+            return key % S;
+        }
+
+        void add(int key, int value) {
+            int index = hashFunction(key); // Index for the key
+            Node* n = new Node(key, value);
+
+            if (table[index] == nullptr) {
+                table[index] = n;
+            } else {
+                Node* t = table[index];
+                while (t->next != nullptr) {
+                    t = t->next;
+                }
+                t->next = n;
+            }
+        }
+        </code></pre>
+        <p>The hash function maps a key to an index in the hash table using the modulo operator. The `add` function inserts a key-value pair into the table. If there is a collision (i.e., a key hashes to an already occupied slot), it uses chaining (linked list) to store the new value.</p>
+
+        <pre><code>
+        void print() {
+            for (int i = 0; i < S; i++) {
+                cout << i << ": ";
+                Node* t = table[i];
+                while (t != nullptr) {
+                    cout << "[" << t->key << ": " << t->value << "] -> ";
+                    t = t->next;
+                }
+                cout << "null" << endl;
+            }
+        }
+        </code></pre>
+        <p>The `print` function iterates over the hash table and prints the keys and values stored at each index. It displays the table in a clear format.</p>
+
+        <pre><code>
+        int main() {
+            Hash table;
+
+            table.add(10, 100);
+            table.add(20, 200);
+            table.add(30, 300);
+            table.add(25, 250);
+            table.add(27, 77);
+
+            table.print();
+        }
+        </code></pre>
+        <p>Finally, in the `main` function, we create a hash table object, add key-value pairs, and print the table to see the stored values.</p>
+      <br>
+      <p>This concludes today’s tutorial. See you in the next one 😊</p>
+      <h3>Check out the full video tutorial:</h3>
+      <a href="#" target="_blank">
+        <img src="thumbnails/thumbnail6.png" alt="Hashing and Hash Tables" class="img-fluid">
+      </a>
+    </section>
+  </div>
+
+  <footer class="text-center">
+    <p>26 Dec 2024 - Rauf AI and ML</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
