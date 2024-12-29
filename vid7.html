@@ -7,6 +7,23 @@
   <link rel="icon" href="img/me.jpeg" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
+
+  .snowflake {
+    position: fixed;
+    top: -10px;
+    z-index: 9999;
+    user-select: none;
+    pointer-events: none;
+    color: white;
+    font-size: 1em;
+    animation: fall linear infinite;
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(100vh);
+    }
+  }
     #comment {
       color: #6c757d;
     }
@@ -92,85 +109,241 @@
     <section id="tutorial1" class="mb-5">
         <h2 class="main-heading">Heaps and Priority Queues</h2>
         <img src="tutorial7/h_and_p.png" alt="Heaps and Priority Queues" class="img-fluid">
-        <p></p>
+        <p>Heaps and priority queues are both used for prioritizing tasks. They are used to sort data based on priority. For example, in a hospital management system, more critical patients should be given higher priority, while less critical patients should be given lower priority. 
+          They are sorted in such a way that the patient with higher priority is checked first. That's why we use heaps and priority queues.</p>
+        </p>
 
         <h2 class="main-heading">Priority Queues</h2>
         <img src="tutorial7/priority.png" alt="Example of priority Queues" class="img-fluid">
-        <p></p>
-        <p></p>
+        <p>Basically, a priority queue uses the queue data structure, which follows the first-in, first-out (FIFO) principle. Elements are added in the order they arrive and removed in the same order. However, in a priority queue, each element is also assigned a priority value. Elements with higher priority are added and removed before those with lower priority.</p>
+        <p>In the image above, you can see that on the right side is the priority queue and on the left is the simple queue. 
+          First, in the simple queue, I am adding 10, 20, and 30 by enqueuing. When I dequeue (removing), it will remove the 10 first and so on. 
+          In the priority queue, I have added 10, 20, and 30 with priority values below them. The 20 has the highest priority with 1, then the 10 with 2, and finally the 30 with the lowest priority. 
+          You can also reverse the priority by saying the higher the value, the more urgency it has, but I have added it like this for now.
+        </p>
 
         <h2 class="main-heading">Code of Priority Queue</h2>
-        <img src="tutorial7/p_code.png" alt="Code of Priority Queue" class="img-fluid">
-        <p></p>
+        <img src="tutorial7/p_queue.png" alt="Code of Priority Queue" class="img-fluid">
+        <p>Here is a glimpse of the code where you can see the main function for the priority queue. 
+          I added values in the same order as in the example above and prioritized them in the same order as well. Finally, you can see the output below.
+        </p>
 
         <h3 class="main-heading">Step-by-Step Code</h3>
+        <p> lets see the code step by step for better understanding </p>
         <pre><code>
-        <p id="comment"></p>
+        <p id="comment">boiler plate code for input/output headers and string stuffs</p>
         #include &lt;iostream&gt;
         using namespace std;
-        </code></pre>
-        <p> </p>
+        <p id="comment">here is the main stuff  </p>
+        struct Node {
+          int data;     
+          int priority; 
+          Node* next;   
+      
+          Node(int d, int p) : data(d), priority(p) {}
+      };
+      </code></pre>
+      
+      <p>In this code you can see im addin some input and output headers and string properties as we have seen many times throughout this playlist. 
+        After that, you can see the main code. Once again, I created a node with an integer data and an integer priority,
+        the priority of that data, and a node pointing to the next node.
+        Then, the constructor just adds the value to data (d) and to priority (p) when initializing. Simple : )</p>
 
         <pre><code>
-        
-        </code></pre>
-        <p> </p>
+          void enqueue(Node*& head, int data, int priority) {
+            Node* n = new Node(data, priority);
+        <p id="comment">Queue is empty or the new node has the highest priority</p>
+        if (!head || priority < head->priority) {
+          n->next = head;
+          head = n;
+          return;
+        }
 
-        <pre><code>
-        <p id="comment"></p>
-        
-        </code></pre>
-        <p></p>
+        <p id="comment">Find the correct position to insert the new node</p>
+        Node* current = head;
+        while (current->next && current->next->priority <= priority) {
+          current = current->next;
+        }
 
-        <pre><code>
-        
+        n->next = current->next;
+        current->next = n;
+        }
         </code></pre>
-        <p></p>
-
+        <p>In this code, Im adding the enqueue method. This method adds an element to the queue while also checking the priority value. If the queue is empty or the new node has the highest priority, it is added at the beginning. Otherwise, we find the correct position based on the priority and insert the new node there.</p>
+        <pre><code></code>
+        <p id="comment">print function</p>
+        void print(Node* head) {
+          while (head) {
+              cout << "data: " << head->data << ", priority: " << head->priority << endl;
+              head = head->next;
+          }
+            }
+        </code></pre>
+        <p>This is the simple print function that uses a while loop to print all the values with their data and priority values.</p>
         <pre><code>
-                </code></pre>
-        <p></p>
+      int main() {
+        Node* pq = nullptr;
+        enqueue(pq, 10, 2);
+        enqueue(pq, 20, 1);
+        enqueue(pq, 30, 3);
+
+        print(pq);
+      }
+        </code></pre>
+        <p>Finally, this is the main function where i create a priority queue (pq), add values to it, and print them.</p>
+
 
         <h2 class="main-heading">Heaps</h2>
         <img src="tutorial7/heaps.png" alt="Example of heaps" class="img-fluid">
-        <p></p>
+        <p>Heaps are also used for prioritizing tasks, but unlike priority queues, they use stack and tree data structures, making them a little more complicated than priority queues.</p>
+        <p>In the image above, you can see on the right side that I am pushing, and here you can see the middle value as the root, with the left leaf being the lesser value and the right leaf being the higher value, or vice versa. On the left side, you can see that I am popping too (by the way, sorry for the mistakes, I am very bad at directions). So first, you can see when I push, I added the value in a tree-like format with [p, d], where p means priority and d means the data. The examples I used are the same as I used in the priority queue so you can understand better. After pushing all three values, the middle value becomes the root, and then the lesser value goes to one side and the greater to the other, like the 10 and 30. When popping on the left, I remove the [1,20] value, and then one side gets unbalanced because of the tree-like structure when I pop, and now it's one-sided. So this is how it works.</p>
 
         <h2 class="main-heading">Code of Heaps</h2>
         <img src="tutorial7/h_code.png" alt="Code of heaps" class="img-fluid">
-        <p></p>
+        <p>Here is a glimpse of the code, showing the main function where I am adding values by pushing and then printing. Then, I perform a pop operation and print again to show it works the same as described above.</p>
 
         <h3 class="main-heading">Step-by-Step Code</h3>
+        <p> lets see the code step by step for better understanding (<pre style="color: red;" > spoiler alert: it be lille complicated , take me while too ; ) </pre> )</p>
         <pre><code>
-        <p id="comment"></p>
+        <p id="comment">Heap is a tree structure that maintains priority order.</p>
+        
         #include &lt;iostream&gt;
+        #include &lt;vector&gt;
         using namespace std;
-        </code></pre>
-        <p> </p>
-
-        <pre><code>
         
-        </code></pre>
-        <p> </p>
-
-        <pre><code>
-        <p id="comment"></p>
+        struct Heap {
+            vector&lt;pair&lt;int, int&gt;&gt; heap; // pair: {priority, data}
         
-        </code></pre>
-        <p></p>
-
-        <pre><code>
+            <p id="comment">Helper functions to get parent and child indices</p>
+            int parent(int i) { return (i - 1) / 2; }
+            int leftChild(int i) { return 2 * i + 1; }
+            int rightChild(int i) { return 2 * i + 2; }
         
+            <p id="comment">Add element to the heap</p>
+            
+          void push(int data, int priority) {
+           heap.push_back({priority, data}); 
+           int i = heap.size() - 1;
+        
+           while (i != 0 && heap[parent(i)].first > heap[i].first) {
+               swap(heap[i], heap[parent(i)]);
+               i = parent(i);
+           }
+             }        
         </code></pre>
-        <p></p>
+        <p>Let's understand the first part of the code:
+          <ol>
+            <li>First, we include necessary headers and create a Heap structure</li>
+            <li>Inside the Heap, we store pairs of priority and data using a vector</li>
+            <li>We have three helper functions:
+              <ul>
+          <li><strong>parent(i):</strong> Finds the parent node</li>
+          <li><strong>leftChild(i):</strong> Finds left child</li> 
+          <li><strong>rightChild(i):</strong> Finds right child</li>
+              </ul>
+            </li>
+            <li>The push function adds new elements:
+              <ul>
+          <li>Adds new pair to vector end</li>
+          <li>Moves it up until heap order is restored</li>
+              </ul>
+            </li>
+          </ol>
+        </p>
 
         <pre><code>
-                </code></pre>
-        <p></p>
+          <p id="comment"> remove and return the element with the highest priority (lowest value)</p>
+          pair<int, int> pop() {
+              if (heap.empty()) {
+            throw runtime_error("Heap is empty");
+              }
+            
+              pair<int, int> root = heap[0];
+                <p id="comment">last element to the root</p>
+              heap[0] = heap.back(); 
+              <p id="comment">remove last element</p>
+              heap.pop_back();       
+            <p id="comment">restore heap property</p>
+              heapify(0); 
+              return root;
+          }
+            
+          <p id="comment">min-heap</p>
+          void heapify(int i) {
+              int smallest = i;
+              int left = leftChild(i);
+              int right = rightChild(i);
+            
+              if (left < heap.size() && heap[left].first < heap[smallest].first) {
+            smallest = left;
+              }
+              if (right < heap.size() && heap[right].first < heap[smallest].first) {
+            smallest = right;
+              }
+            
+              if (smallest != i) {
+            swap(heap[i], heap[smallest]);
+            heapify(smallest);
+              }
+          }
+            
+          bool isEmpty() {
+              return heap.empty();
+          }
+            
+          void print() {
+              for (auto &p : heap) {
+            cout << "data: " << p.second << ", priority: " << p.first << endl;
+              }
+          }
+            };
+        </code></pre>
+        <p>Now let's understand the second part:
+          <ol>
+            <li>The pop function removes highest priority element:
+              <ul>
+          <li>Takes root element (highest priority)</li>
+          <li>Moves last element to root</li>
+          <li>Restores heap order</li>
+              </ul>
+            </li>
+            <li>The heapify function maintains heap order:
+              <ul>
+          <li>Finds smallest among root and children</li>
+          <li>Swaps if needed</li>
+          <li>Continues recursively</li>
+              </ul>
+            </li>
+            <li>Helper functions:
+              <ul>
+          <li><strong>isEmpty():</strong> Checks if heap empty</li>
+          <li><strong>print():</strong> Shows all elements</li>
+              </ul>
+            </li>
+          </ol>
+        </p>
 
+        <pre><code>
+    int main() {
+    Heap pq;
 
-      <br>
+    pq.push(10, 2);
+    pq.push(20, 1); 
+    pq.push(30, 3);
 
+    pq.print();
 
+    cout << endl;
+    cout<< "after poping left leave" << endl;
+    cout<< endl;
+    
+    auto top = pq.pop(); 
+    pq.print();
+}
+        </code></pre>
+        <p> And finally here im pushing , printing and poping the values as i explained in example above  </p>
+
+        <br>
 
       <p>So this concludes today’s tutorial. See you in the next one 😊</p>
       <h3>Check out the full video tutorial:</h3>
@@ -180,10 +353,30 @@
     </section>
   </div>
 
+  <h2 style="text-align: center;"> <a href="snow.html" style="color:snow;"> Happy New Year ❄️ </a></h2>
+  <h4 style="color: skyblue; text-align: center;"> in advance 😉 </h4>
+
+
   <footer class="text-center">
     <p>28-29 Dec 2024 - Rauf AI and ML</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      function createSnowflake() {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
+        snowflake.textContent = '❄️';
+        snowflake.style.left = Math.random() * 100 + 'vw';
+        snowflake.style.fontSize = Math.random() * 2 + 0.5 + 'em';
+        snowflake.style.animationDuration = Math.random() * 5 + 5 + 's'; 
+        document.body.appendChild(snowflake);
+  
+       snowflake.addEventListener('animationend', () => snowflake.remove());
+      }
+  
+      setInterval(createSnowflake, 1000);
+    </script>
 </body>
 </html>
