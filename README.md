@@ -11,3 +11,9 @@
 
 ## Check out the complete playlist below 😊  
 ### [Playlist](https://youtube.com/playlist?list=PLTZ70XpJ2zMv4mqoqG9i4t-bA7DniXAwO)  
+
+## Text Based Tutorial for reading 📓
+### [here](https://raufjatoi.github.io/Introduction-to-Data-Structure/index.html)
+
+## Happy New Year ❄️☃️
+### [2025](https://raufjatoi.github.io/Introduction-to-Data-Structure/snow.html)        
